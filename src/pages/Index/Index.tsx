@@ -39,14 +39,17 @@ const Index: React.FC = () => {
           loading={loading}
           itemLayout="horizontal"
           dataSource={list}
-          renderItem={(item) => (
-            <List.Item actions={[<a key={"list-loadmore-edit"}>查看</a>]}>
-              <List.Item.Meta
-                title={<a href={"https://ant.design"}>{item.name}</a>}
-                description={item.description}
-              />
-            </List.Item>
-          )}
+          renderItem={(item) => {
+            const apiLink = `/interface_info/${item.id}`;
+            return(
+              <List.Item actions={[<a key={item.id} href={apiLink} >查看</a>]}>
+                <List.Item.Meta
+                  title={<a href={apiLink}>{item.name}</a>}
+                  description={item.description}
+                />
+              </List.Item>
+            );
+          }}
           //分页配置
           pagination={{
             //自定义显示总数
